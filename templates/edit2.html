@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}<title>資料表修改(二)</title>{% endblock %}
+{% block content %}
+  <h2>student 資料表修改(二)</h2>
+  <form action="/edit2/{{unit.id}}/save" method="POST" name="form1">
+	{% csrf_token %}
+	<table border="1" cellspacing="1" cellpadding="4">
+	  <tr>
+		<th>姓名</th>
+		<td ><input type="text" id="cName" name="cName" value={{unit.cName}}></td>
+	  </tr>
+		<th>性別{{unit.cSex}}</th>
+		{% if unit.cSex == "M" %}
+			<td >
+			  <input name="cSex" type="radio" id="cSex1" value="M" checked="checked" />
+			  男生
+			  <input name="cSex" type="radio" id="cSex2" value="F" />
+			  女生
+			</td>
+		{% else %}
+			<td>
+			  <input name="cSex" type="radio" id="cSex1" value="M"  />
+			  男生
+			  <input name="cSex" type="radio" id="cSex2" value="F" checked="checked"/>
+			  女生
+			</td>
+		{% endif %}
+	  </tr>
+	  <tr>
+		<th>生日</th>
+		<td><input type="text" id="cBirthday" name="cBirthday" value={{unit.cBirthday}}></td>
+	  </tr>
+	  <tr>			  
+	  <tr>
+		<th>郵件帳號</th>
+		<td><input type="text" id="cEmail" name="cEmail" value={{unit.cEmail}}></td>
+	  </tr>
+	  <tr>
+		<th >電話</th>
+		<td><input type="text" id="cPhone" name="cPhone" value={{unit.cPhone}}></td>
+	  </tr>
+	  <tr>
+		<th>地址</th>
+		<td><input type="text" id="cAddr" name="cAddr" value={{unit.cAddr}}></td>
+	  </tr>
+	  <tr>
+		<th colspan="2" align="center">
+		  <input type="submit" name="button" id="button" value="送出">
+		  <input type="reset" name="button2" id="button2" value="重設"></th>
+	  </tr>
+	</table>
+	<span style="color:red">{{message}}</span>
+  </form>
+{% endblock %}
